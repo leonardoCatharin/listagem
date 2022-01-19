@@ -14,6 +14,15 @@
     <ion-reorder-group (ionItemReorder)="doReorder($event)" disabled="false">      
       <ion-item *ngFor="let filme of filmes; let ix = index" [hidden]="!filme.visible">
         <ion-col size="1">
+          <ion-button color="success" (click)="addFilmeAss(filme)" *ngIf="!filme.adicionado">
+            <ion-icon name="add"></ion-icon>
+          </ion-button>
+
+          <ion-button color="danger" (click)="removeFilmeAss(filme)" *ngIf="filme.adicionado">
+            <ion-icon name="close"></ion-icon>
+          </ion-button>
+        </ion-col>
+        <ion-col size="1">
           {{ filme.cod }}
         </ion-col>
         <ion-col size="4">
@@ -38,3 +47,20 @@
 
   </ion-grid>
 </ion-content>
+
+<ion-footer>
+  <ion-row>
+    <ion-col size="12">
+      Listagem de filmes que você quer ver ({{ filmesAss.length }}):
+    </ion-col>
+  </ion-row>
+
+  <ion-row *ngFor="let item of filmesAss">
+    <ion-col size="12">
+      {{ item.titulo }}
+    </ion-col>
+  </ion-row>
+
+
+</ion-footer>
+
